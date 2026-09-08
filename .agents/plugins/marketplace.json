@@ -1,0 +1,20 @@
+{
+  "name": "stella-skills",
+  "interface": {
+    "displayName": "Stella Skills"
+  },
+  "plugins": [
+    {
+      "name": "codex-sidekick",
+      "source": {
+        "source": "local",
+        "path": "./plugins/codex-sidekick"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

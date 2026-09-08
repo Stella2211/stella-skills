@@ -1,0 +1,25 @@
+{
+  "name": "codex-sidekick",
+  "version": "0.1.0",
+  "description": "Codexを長時間自走させるための非公式スキル",
+  "author": {
+    "name": "Stella",
+    "url": "https://github.com/Stella2211"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Sidekick",
+    "shortDescription": "Codexを長時間自走させるためのスキル",
+    "longDescription": "queue機能とOSのタイマー機能を組み合わせて、Claude Codeのmonitorのような機能を実現する非公式スキル。長時間処理をチャットから独立して実行し、進捗をCodexへ報告します。",
+    "developerName": "Stella",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "5分後にこのスレッドへ通知して、現在時刻を報告してください。",
+      "長時間処理をアプリ終了後も継続し、進捗を定期報告できる形で実行してください。"
+    ]
+  },
+  "repository": "https://github.com/Stella2211/stella-skills",
+  "homepage": "https://github.com/Stella2211/stella-skills",
+  "license": "MIT"
+}
