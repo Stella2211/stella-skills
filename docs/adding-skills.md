@@ -1,6 +1,6 @@
 # プラグインとスキルを追加する
 
-この文書は、`stella-skills` を管理する人向けのガイドです。利用者向けのインストール方法や `codex-sidekick` の使い方は、リポジトリの [README](../README.md) を参照してください。
+この文書は、`stella-skills` を管理する人向けのガイドです。利用者向けのインストール方法や各スキルの使い方は、リポジトリの [README](../README.md) を参照してください。
 
 ## リポジトリ構成
 
@@ -12,17 +12,33 @@ stella-skills/
 │   └── plugins/
 │       └── marketplace.json
 ├── plugins/
-│   └── codex-sidekick/
+│   ├── codex-sidekick/
+│   │   ├── .codex-plugin/
+│   │   │   └── plugin.json
+│   │   └── skills/
+│   │       └── codex-sidekick/
+│   │           ├── SKILL.md
+│   │           └── references/
+│   │               ├── linux.md
+│   │               ├── long-running.md
+│   │               ├── macos.md
+│   │               └── windows.md
+│   └── docs-writer/
 │       ├── .codex-plugin/
 │       │   └── plugin.json
 │       └── skills/
-│           └── codex-sidekick/
+│           └── docs-writer/
 │               ├── SKILL.md
-│               └── references/
-│                   ├── linux.md
-│                   ├── long-running.md
-│                   ├── macos.md
-│                   └── windows.md
+│               ├── references/
+│               │   └── textlint.md
+│               ├── assets/
+│               │   ├── textlintrc.json
+│               │   └── runtime/
+│               │       ├── package.json
+│               │       └── bun.lock
+│               └── scripts/
+│                   ├── lint-docs.ts
+│                   └── lint-docs.test.ts
 ├── docs/
 │   └── adding-skills.md
 └── README.md
@@ -33,6 +49,8 @@ stella-skills/
 新しいプラグインは `plugins/<plugin-name>/` に追加し、その中に `.codex-plugin/plugin.json` と `skills/<skill-name>/SKILL.md` を置きます。同じプラグインに複数のスキルを置く場合は、`skills/` の下にスキルごとのディレクトリを増やします。マーケットプレイスの `plugins` エントリからは、常にこのリポジトリのルートを基準に各プラグインを参照します。
 
 新しい機能が既存プラグインのスキルとして収まる場合は、対象プラグインの `skills/<skill-name>/` に追加し、必要な参照資料も同じスキルのディレクトリから相対参照します。独立した設定、権限、配布単位、または複数スキルをまとめる境界が必要な場合は、新しい `plugins/<plugin-name>/` を追加します。
+
+このリポジトリの `docs-writer` は、コードの現状に合わせた日本語ドキュメントの作成・更新と textlint による確認を扱います。スキルから参照する資料は、そのスキルの `references/` に置きます。実行用スクリプトや textlint の設定・依存関係を追加する場合も、対象プロジェクトへ書き込まない構成を保ちます。
 
 プラグインを追加・変更したら、次を確認します。
 

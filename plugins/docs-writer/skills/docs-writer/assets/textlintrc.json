@@ -1,0 +1,19 @@
+{
+  "rules": {
+    "@textlint-ja/preset-ai-writing": true,
+    "@textlint-rule/pattern": {
+      "patterns": [
+        {
+          "pattern": "/効(?:か|き|く|け|こ|い)/",
+          "message": "「効く」系の表現は禁止です。何がどう変わるかを具体的に説明するか、根拠のない評価を削除してください。",
+          "allowNodeTypes": ["BlockQuote"]
+        },
+        {
+          "pattern": "/強(?:い|く|かった|ければ|さ|み)/",
+          "message": "「強い」系の表現は禁止です。評価軸・比較対象・根拠を具体的に説明するか、評価を削除してください。",
+          "allowNodeTypes": ["BlockQuote"]
+        }
+      ]
+    }
+  }
+}

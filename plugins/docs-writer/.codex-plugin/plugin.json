@@ -1,0 +1,22 @@
+{
+  "name": "docs-writer",
+  "version": "0.1.0",
+  "description": "根拠を確認しながら日本語ドキュメントを作成・更新し、textlintで確認するスキル",
+  "author": { "name": "Stella", "url": "https://github.com/Stella2211" },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Docs Writer",
+    "shortDescription": "根拠付きの日本語ドキュメントを作成・更新",
+    "longDescription": "読者に必要な情報と必要な制約だけを確認し、既存コードの現状に合わせて日本語ドキュメントを作成・更新します。textlintで文体と用語を確認します。",
+    "developerName": "Stella",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "この機能の使い方を、読者に必要な情報だけで日本語ドキュメントにしてください。",
+      "既存コードの現状を確認して、古い説明を更新し、textlintでも確認してください。"
+    ]
+  },
+  "repository": "https://github.com/Stella2211/stella-skills",
+  "homepage": "https://github.com/Stella2211/stella-skills",
+  "license": "MIT"
+}
