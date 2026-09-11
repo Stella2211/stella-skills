@@ -12,6 +12,16 @@
           "pattern": "/強(?:い|く|かった|ければ|さ|み)/",
           "message": "「強い」系の表現は禁止です。評価軸・比較対象・根拠を具体的に説明するか、評価を削除してください。",
           "allowNodeTypes": ["BlockQuote"]
+        },
+        {
+          "pattern": "正本",
+          "message": "「正本」は使わず、「SSoT」と書いてください。",
+          "allowNodeTypes": ["BlockQuote"]
+        },
+        {
+          "pattern": "上流",
+          "message": "「上流」は使わないでください。別のリポジトリを指す場合は具体的なリポジトリ名を、一般的な参照元を指す場合は「アップストリーム」を使ってください。",
+          "allowNodeTypes": ["BlockQuote"]
         }
       ]
     }

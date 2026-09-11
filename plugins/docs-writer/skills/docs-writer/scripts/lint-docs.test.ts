@@ -41,8 +41,25 @@ test("reports both prohibited families with file and line; ignores project ignor
   expect(output).toContain("「強い」系");
 });
 
+test("reports translation-like terms with actionable replacements", () => {
+  fixture("terms.md", "このファイルを正本とします。\n上流の変更を取り込みます。\n");
+  const result = run(["terms.md"]);
+  expect(result.exitCode).toBe(1);
+  const output = result.stdout.toString();
+  expect(output).toContain("「正本」");
+  expect(output).toContain("SSoT");
+  expect(output).toContain("「上流」");
+  expect(output).toContain("具体的なリポジトリ名");
+  expect(output).toContain("アップストリーム");
+});
+
+test("permits the preferred replacements", () => {
+  fixture("preferred.md", "このファイルをSSoTとします。\n変更をアップストリームから取り込みます。\nstella-skillsリポジトリを参照します。\n");
+  expect(run(["preferred.md"]).exitCode).toBe(0);
+});
+
 test("permits quotes and code while checking prose in the same file", () => {
-  fixture("quote.md", "> この設定は効く。\n> この実装は強い。\n\n`強い`\n\n```txt\n効く\n```\n");
+  fixture("quote.md", "> この設定は効く。\n> この実装は強い。\n> 正本と上流。\n\n`強い正本上流`\n\n```txt\n効く\n正本\n上流\n```\n");
   expect(run(["quote.md"]).exitCode).toBe(0);
   fixture("quote.md", "> この実装は強い。\n\nこの設定は効く。\n");
   expect(run(["quote.md"]).exitCode).toBe(1);
