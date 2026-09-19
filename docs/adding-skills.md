@@ -23,22 +23,28 @@ stella-skills/
 │   │               ├── long-running.md
 │   │               ├── macos.md
 │   │               └── windows.md
-│   └── docs-writer/
+│   ├── docs-writer/
+│   │   ├── .codex-plugin/
+│   │   │   └── plugin.json
+│   │   └── skills/
+│   │       └── docs-writer/
+│   │           ├── SKILL.md
+│   │           ├── references/
+│   │           │   └── textlint.md
+│   │           ├── assets/
+│   │           │   ├── textlintrc.json
+│   │           │   └── runtime/
+│   │           │       ├── package.json
+│   │           │       └── bun.lock
+│   │           └── scripts/
+│   │               ├── lint-docs.ts
+│   │               └── lint-docs.test.ts
+│   └── long-task-execution/
 │       ├── .codex-plugin/
 │       │   └── plugin.json
 │       └── skills/
-│           └── docs-writer/
-│               ├── SKILL.md
-│               ├── references/
-│               │   └── textlint.md
-│               ├── assets/
-│               │   ├── textlintrc.json
-│               │   └── runtime/
-│               │       ├── package.json
-│               │       └── bun.lock
-│               └── scripts/
-│                   ├── lint-docs.ts
-│                   └── lint-docs.test.ts
+│           └── long-task-execution/
+│               └── SKILL.md
 ├── docs/
 │   └── adding-skills.md
 └── README.md

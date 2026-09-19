@@ -1,0 +1,25 @@
+{
+  "name": "long-task-execution",
+  "version": "0.1.0",
+  "description": "機械学習など不確実性を伴う大きなタスクを、最終目標と進捗に沿って遂行するスキル",
+  "author": {
+    "name": "Stella",
+    "url": "https://github.com/Stella2211"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Long Task Execution",
+    "shortDescription": "不確実性を伴う大きなタスクの進捗と判断を管理",
+    "longDescription": "機械学習など不確実性を伴う大きなタスクで、最終目標、作業条件、完了条件、時間上限を進捗管理シートに整理し、目標に必要な作業を選んで遂行します。単発の修正や短い回答、目的が明確なリファクタリングなどは対象外です。",
+    "developerName": "Stella",
+    "category": "Productivity",
+    "capabilities": [],
+    "defaultPrompt": [
+      "この機械学習の実験を、最終目標と進捗管理シートに沿って進めてください。",
+      "この不確実性のある大きなタスクの作業条件、完了条件、時間上限を整理して遂行してください。"
+    ]
+  },
+  "repository": "https://github.com/Stella2211/stella-skills",
+  "homepage": "https://github.com/Stella2211/stella-skills",
+  "license": "MIT"
+}
