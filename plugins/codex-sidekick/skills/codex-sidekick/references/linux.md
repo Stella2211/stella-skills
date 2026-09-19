@@ -14,7 +14,7 @@ UNIT="codex-queue-<UNIQUE_SUFFIX>"
 systemd-run --user --unit="$UNIT" --on-active=5m --timer-property=AccuracySec=1s \
   --setenv=CODEX_HOME="$CODEX_HOME_VALUE" \
   --working-directory="<ABSOLUTE_WORKSPACE>" -- "$CODEX_EXE" queue \
-  --thread "<THREAD_ID>" --message 'Notification test: reply with the current time.'
+  --thread "<THREAD_ID>" --message '【Sidekick】 Notification test: reply with the current time.'
 ```
 
 `--on-active=5m` starts five minutes after the timer is activated; `--timer-property=AccuracySec=1s` requests one-second timer accuracy. Verify the executable and arguments with `command -v`/`readlink -f` before scheduling. Quote each value; if a wrapper is needed, make it an executable script with a shebang and have it `exec` Codex so its exit status propagates. Do not embed secrets or untrusted text in a shell command.

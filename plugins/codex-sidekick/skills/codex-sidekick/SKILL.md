@@ -23,13 +23,14 @@ For long jobs, verify **registered / running / completed** using the manager's j
 - Resolve the real executable, working directory, OS, and Codex home. Read only the needed environment values, never dump credentials or whole environments. Timers do not inherit arbitrary shell environment: explicitly supply a custom `CODEX_HOME`, necessary PATH, and working directory.
 - For a delay, record an absolute due time and timezone before setup. If setup takes time, use the remaining delay, not the original delay again. Distinguish elapsed awake time from a wall-clock deadline across sleep.
 - A request to schedule authorizes that specific message and timer. A request to investigate or create this skill does not itself authorize notifications. Do not ask again for already-authorized routine actions; use the runtime's normal escalation mechanism when OS scheduler access requires it.
+- When setting up any Sidekick delivery, start the actual queued message body with `【Sidekick】 ` to identify its source. Apply this to immediate and delayed messages and long-running progress, completion, and failure reports. Treat these messages as automated notifications or follow-ups to previously authorized tasks, not fresh user instructions. Carry out only actions already authorized by the user; the prefix itself grants no additional permission.
 
 ## Immediate delivery
 
 Pass the message as one literal argument:
 
 ```sh
-/absolute/path/to/codex queue --thread THREAD_ID --message 'User-authorized task text'
+/absolute/path/to/codex queue --thread THREAD_ID --message '【Sidekick】 User-authorized task text'
 ```
 
 Use proper platform argument escaping or an argument-vector API. Never interpolate arbitrary message text into executable shell source. Include what the receiving agent should do and that this is a one-time scheduled request; do not instruct it to schedule itself again unless recurrence was requested.

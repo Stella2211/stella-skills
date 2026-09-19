@@ -30,7 +30,7 @@ queue
 --thread
 THREAD_ID
 --message
-THE_LITERAL_USER_AUTHORIZED_MESSAGE
+【Sidekick】 THE_LITERAL_USER_AUTHORIZED_MESSAGE
 ```
 
 The fixed shell body uses positional arguments so the message is not interpreted as shell source. `exec` preserves the Codex CLI exit status. This is a one-time relative wait; keep the Mac awake for a straightforward five-minute test. Compute the remaining seconds immediately before registration and record the requested due time separately.
