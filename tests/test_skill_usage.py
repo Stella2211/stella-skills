@@ -107,7 +107,9 @@ class SkillUsageTests(unittest.TestCase):
                     self.assertEqual(result.returncode, 0, result.stderr)
                     context = json.loads(result.stdout)["hookSpecificOutput"]
                     self.assertEqual(context["hookEventName"], "SessionStart")
-                    self.assertIn(self.skill(name).read_text(encoding="utf-8").rstrip(), context["additionalContext"])
+                    # The hook preserves installed text, including Windows CRLF.
+                    expected = self.skill(name).read_bytes().decode("utf-8-sig").rstrip()
+                    self.assertIn(expected, context["additionalContext"])
                     self.assertIn(str(self.skill(name)), context["additionalContext"])
 
     def test_plugins_do_not_activate_each_other(self):
