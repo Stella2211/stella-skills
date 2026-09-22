@@ -81,6 +81,12 @@ lint の実行契約とキャッシュの扱いは [`docs-writer` の参照資�
 
 対応状況は、特定の OS、Codex CLI、ユーザーセッション、電源状態の組み合わせで変わります。利用を始める前に、実際の実行ファイル、`CODEX_HOME`、作業ディレクトリ、対象スレッド ID、ログの保存先を確認してください。
 
+## 使用したスキルだけをCompaction後に復元する
+
+`docs-writer`と`long-task-execution`は、実際に適用したスキルをスレッドごとに登録し、親のCompaction後に登録済み本文だけを再投入できます。未登録スキルは無出力、子の登録は親へ合流しません。
+
+導入時の`/hooks`での信頼登録、使用登録・解除、状態保存先、対応範囲は[使用登録Hookのガイド](docs/skill-usage-hooks.md)を参照してください。
+
 ## ライセンス
 
 作者: [Stella](https://github.com/Stella2211)。[MIT License](LICENSE) のもとで公開しています。

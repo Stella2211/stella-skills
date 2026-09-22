@@ -1,0 +1,18 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(compact|clear)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --offline --no-project python -c \"import os,runpy,sys; sys.argv=[os.path.join(os.environ['PLUGIN_ROOT'],'hooks','skill-usage.py'),'hook']; runpy.run_path(sys.argv[0],run_name='__main__')\"",
+            "commandWindows": "uv run --offline --no-project python -c \"import os,runpy,sys; sys.argv=[os.path.join(os.environ['PLUGIN_ROOT'],'hooks','skill-usage.py'),'hook']; runpy.run_path(sys.argv[0],run_name='__main__')\"",
+            "timeout": 10,
+            "additionalContextLimit": 0
+          }
+        ]
+      }
+    ]
+  }
+}
