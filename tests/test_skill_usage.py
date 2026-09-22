@@ -110,7 +110,8 @@ class SkillUsageTests(unittest.TestCase):
                     # The hook preserves installed text, including Windows CRLF.
                     expected = self.skill(name).read_bytes().decode("utf-8-sig").rstrip()
                     self.assertIn(expected, context["additionalContext"])
-                    self.assertIn(str(self.skill(name)), context["additionalContext"])
+                    # Windows temp paths may use an 8.3 alias such as RUNNER~1.
+                    self.assertIn(str(self.skill(name).resolve()), context["additionalContext"])
 
     def test_plugins_do_not_activate_each_other(self):
         self.cli("activate", "long-task-execution")
