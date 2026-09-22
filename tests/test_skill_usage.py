@@ -74,7 +74,8 @@ class SkillUsageTests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stderr)
             output = json.loads(result.stdout)["hookSpecificOutput"]
             self.assertEqual(output["hookEventName"], "SessionStart")
-            body = (self.install / name / "skills" / name / "SKILL.md").read_text(encoding="utf-8")
+            # Match the bytes the helper reads; read_text would normalize CRLF.
+            body = (self.install / name / "skills" / name / "SKILL.md").read_bytes().decode("utf-8-sig")
             self.assertIn(body.rstrip(), output["additionalContext"])
             self.assertLessEqual(len(output["additionalContext"].encode()), 20 * 1024)
 
@@ -191,7 +192,15 @@ class SkillUsageTests(unittest.TestCase):
             self.invoke(name, "activate")
             env = dict(self.env, PLUGIN_ROOT=str(root), UV_PYTHON=sys.executable)
             data = json.dumps({"hook_event_name": "SessionStart", "source": "compact", "session_id": "parent-1"}).encode()
-            commands = [["sh", "-c", handler["command"]]] if os.name != "nt" else [["cmd", "/d", "/s", "/c", handler["command"]], ["powershell", "-NoProfile", "-Command", handler["command"]]]
+            if os.name == "nt":
+                # list2cmdline uses CRT escaping, not cmd.exe shell quoting.
+                command = handler.get("commandWindows", handler["command"])
+                commands = [
+                    'cmd.exe /d /s /c "' + command + '"',
+                    ["powershell", "-NoProfile", "-NonInteractive", "-Command", command],
+                ]
+            else:
+                commands = [["sh", "-c", handler["command"]]]
             for command in commands:
                 result = subprocess.run(command, input=data, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=self.root, env=env, timeout=30)
                 self.assertEqual(result.returncode, 0, result.stderr)
