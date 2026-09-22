@@ -1,0 +1,19 @@
+{
+  "description": "Restore only a skill explicitly adopted by this root thread.",
+  "hooks": {
+    "SessionStart": [
+      {
+        "matcher": "^(compact|clear)$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --offline --no-project python \"${PLUGIN_ROOT}/hooks/skill-usage.py\" hook",
+            "commandWindows": "uv run --offline --no-project python -c \"import os,runpy; runpy.run_path(os.path.join(os.environ['PLUGIN_ROOT'],'hooks','skill-usage.py'),run_name='__main__')\" hook",
+            "timeout": 10,
+            "additionalContextLimit": 0
+          }
+        ]
+      }
+    ]
+  }
+}

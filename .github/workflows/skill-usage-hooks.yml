@@ -1,0 +1,39 @@
+name: Skill usage hooks
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/docs-writer/**'
+      - 'plugins/long-task-execution/**'
+      - 'tests/test_skill_usage_hooks.py'
+      - '.github/workflows/skill-usage-hooks.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/docs-writer/**'
+      - 'plugins/long-task-execution/**'
+      - 'tests/test_skill_usage_hooks.py'
+      - '.github/workflows/skill-usage-hooks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@c771a70e6277c0a99b617c7a806ffedaca235ff9 # v9.0.0
+        with:
+          enable-cache: false
+      - name: Prepare Python
+        run: uv python install 3.12
+      - name: Test helpers and packaged hook commands
+        run: uv run --offline --no-project --python 3.12 python -m unittest discover -s tests -p test_skill_usage_hooks.py -v

@@ -1,12 +1,13 @@
 {
   "name": "long-task-execution",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "機械学習など不確実性を伴う大きなタスクを、最終目標と進捗に沿って遂行するスキル",
   "author": {
     "name": "Stella",
     "url": "https://github.com/Stella2211"
   },
   "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "Long Task Execution",
     "shortDescription": "不確実性を伴う大きなタスクの進捗と判断を管理",
