@@ -92,7 +92,8 @@ def run_hook() -> None:
         data = handle.read(MAX_SKILL_BYTES + 1)
     if len(data) > MAX_SKILL_BYTES:
         raise ValueError(f"{name}: SKILL.md exceeds 16 KiB; read it manually")
-    text = data.decode("utf-8-sig")
+    # Git may check out CRLF on Windows. Send platform-independent text.
+    text = data.decode("utf-8-sig").replace("\r\n", "\n").replace("\r", "\n")
     if not text.strip():
         raise ValueError(f"{name}: SKILL.md is empty")
     context = (
