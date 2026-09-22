@@ -1,9 +1,10 @@
 {
   "name": "docs-writer",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "根拠を確認しながら日本語ドキュメントを作成・更新し、textlintで確認するスキル",
   "author": { "name": "Stella", "url": "https://github.com/Stella2211" },
   "skills": "./skills/",
+  "hooks": "./hooks/hooks.json",
   "interface": {
     "displayName": "Docs Writer",
     "shortDescription": "根拠付きの日本語ドキュメントを作成・更新",
